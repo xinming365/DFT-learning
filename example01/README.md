@@ -19,3 +19,5 @@ STEP 3: DOS calculation
 BAND计算
 方式一：pw.x ’scf+smearing’         pw.x  ’bands’          plot bands
 方式二：pw.x ’scf’ no smearing.     pw.x  ’nscf’        pw.x. ‘bands’       plot bands
+
+晶格参数的选取对计算结果影响很大。对于Si，这里选取celldm(1)=10.41 Bohr. 当celldm(1)=10.41时，Fermi energy=6.137eV，接近参考值6.15eV。而这个参数为10.2时，Fermi energy = 6.8927eV,误差大，且Gamma点的声子计算出错，声学支不为0。出现这个错误时，无论怎样更改ecutwfc值，都对结果影响十分小。
