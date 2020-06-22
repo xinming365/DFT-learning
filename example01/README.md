@@ -20,6 +20,11 @@ BAND计算
 方式一：pw.x ’scf+smearing’         pw.x  ’bands’          plot bands
 方式二：pw.x ’scf’ no smearing.     pw.x  ’nscf’        pw.x. ‘bands’       plot bands
 
-晶格参数的选取对计算结果影响很大。对于Si，这里选取celldm(1)=10.41 Bohr. 当celldm(1)=10.41时，Fermi energy=6.137eV，接近参考值6.15eV。而这个参数为10.2时，Fermi energy = 6.8927eV,误差大。出现这个错误时，无论怎样更改ecutwfc值，都对结果影响十分小。
+晶格参数的选取对计算结果影响很大。对于Si，这里选取celldm(1)=10.41 Bohr. 当celldm(1)=10.41时，Fermi energy=6.137eV，接近参考值6.15eV。而这个参数为10.2时，Fermi energy = 6.8927eV,误差大，且Gamma点的声子计算出错，声学支不为0。出现这个错误时，无论怎样更改ecutwfc值，都对结果影响十分小。
 
-这里Gamma点的声子计算出错，声学支不为0，更不接近0.
+
+#### 声子的计算
+练习给出了使用pw.x和ph.x去计算Si在Gamma点的声子频率
+step1:进行自洽计算
+step2:声子计算（prefix和outdir必须和scf计算设置的参数一致）dynamic matrix会被保存在fildyn参数中，默认民称是“matdyn”，这里设置为“si.dyn”
+Gamma点声子计算可以直接在scf计算之后。对于BZ中所有其他点，需要再进行nscf计算。
